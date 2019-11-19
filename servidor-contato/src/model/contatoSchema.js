@@ -9,11 +9,20 @@ const ContatoSchema = new Schema({
     },
     nome: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     celular: {
         type: String,
         required: true,
+    },
+    fotoPerfil: {
+        type: Object,
+        required: false
+    },
+    dataNascimento:{
+        type: Date,
+        required: true
     }
 })
 
