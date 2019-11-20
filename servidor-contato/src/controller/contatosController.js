@@ -49,7 +49,11 @@ const getById = (request, response) => {
         if(error){
             return response.status(500).send(error)
         }else{
-        return response.status(200).send(contato)   
+            if(contato){
+            return response.status(200).send(contato)   
+            }else{
+                return response.sendStatus(404)
+            }
         }
     })
 }
