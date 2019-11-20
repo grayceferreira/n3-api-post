@@ -28,6 +28,33 @@ const add = (request, response) => {
     })
 }
 
+const getNome = (request, response) => {
+    const nomeContato = request.params.nome
+    const regex = new RegExp(nomeContato)
+
+    const filtro = { nome : regex }
+
+    contatosCollection.find(filtro,(error,contatos) => {
+        if(error){
+            return response.status(500).send(error)
+        }else{
+        return response.status(200).send(contatos)
+}
+    })
+};
+
+const getById = (request, response) => {
+    const idContato = request.params.id;
+    contatosCollection.findById(idContato, (error, contato) => {
+        if(error){
+            return response.status(500).send(error)
+        }else{
+        return response.status(200).send(contato)   
+        }
+    })
+}
+
+
 const formatarData = (dataString) => {
     const dia = dataString.split("/")[0]
     const mes = dataString.split("/")[1] - 1
@@ -115,5 +142,7 @@ function verificarSigno(dia, mes) {
 
 module.exports = {
     getAll,
-    add
+    add,
+    getNome,
+    getById
 }

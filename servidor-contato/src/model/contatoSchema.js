@@ -17,7 +17,7 @@ const ContatoSchema = new Schema({
         required: true,
     },
     fotoPerfil: {
-        type: Object,
+        type: String,
         required: false
     },
     dataNascimento:{
