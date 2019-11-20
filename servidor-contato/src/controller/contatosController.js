@@ -50,13 +50,15 @@ const getById = (request, response) => {
             return response.status(500).send(error)
         }else{
             if(contato){
-            return response.status(200).send(contato)   
+            contato.remove();
+            return response.sendStatus(200)   
             }else{
                 return response.sendStatus(404)
             }
         }
     })
 }
+
 
 
 const formatarData = (dataString) => {
