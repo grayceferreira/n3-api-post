@@ -59,6 +59,23 @@ const getById = (request, response) => {
     })
 }
 
+const updateById = (request, response) => {
+    const idContato = request.params.id;
+    const contato = request.body;
+    const options = {new: true}
+
+    contatosCollection.findByIdAndUpdate(idContato, contato, options, (error, contato) => {
+        if(error) {
+            return response.status(500).send(error)
+        } else if (contato) {
+            // return response.sendStatus(204) //retorno sem exibição de resposta
+            return response.status(200).send(contato)
+          } else {
+              return response.sendStatus(404)
+          }   
+    })
+
+}
 
 
 const formatarData = (dataString) => {
@@ -150,5 +167,6 @@ module.exports = {
     getAll,
     add,
     getNome,
-    getById
+    getById,
+    updateById
 }
